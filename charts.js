@@ -65,9 +65,9 @@ function buildCharts(sample) {
     var sampleArray = filteredSamples[0];
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otu_ids = result.otu_ids;
-    var otu_labels = result.otu_labels;
-    var sample_values = result.sample_values;
+    var otu_ids = sampleArray.otu_ids;
+    var otu_labels = sampleArray.otu_labels;
+    var sample_values = sampleArray.sample_values;
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
@@ -92,45 +92,34 @@ function buildCharts(sample) {
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
-  });
-}
 
 // Bubble Function
-
-function buildCharts(sample) {
-      // Use d3.json to load and retrieve the samples.json file 
-  d3.json("samples.json").then((data) => {
-        
-    
-     // Deliverable 1 Step 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot(); 
-    
     // 1. Create the trace for the bubble chart.
     var bubbleData = [
-        {
-          x: otu_ids,
-          y: sample_values,
-          text: otu_labels,
-          mode: 'markers',
-          marker: {
-            size: sample_values,
-            color: otu_ids,
-            colorscale: 'Earth'
-          }
+      {
+        x: otu_ids,
+        y: sample_values,
+        text: otu_labels,
+        mode: 'markers',
+        marker: {
+          size: sample_values,
+          color: otu_ids,
+          colorscale: 'Earth'
         }
-      ];
+      }
+    ];
     
-        // 2. Create the layout for the bubble chart.
-        var bubbleLayout = {
-          title: 'Bacteria Cultures Per Sample',
-          margin: { t: 0 },
-          hovermode: 'closest',
-          xaxis: { title: 'OTU ID' },
-          margin: { t: 30}
-        };
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      title: 'Bacteria Cultures Per Sample',
+      margin: { t: 0 },
+      hovermode: 'closest',
+      xaxis: { title: 'OTU ID' },
+      margin: { t: 30}
+    };
     
-        // 3. Use Plotly to plot the data with the layout.
-        Plotly.newPlot('bubble', bubbleData, bubbleLayout); 
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot('bubble', bubbleData, bubbleLayout); 
       
     var gaugeData = [
           {
